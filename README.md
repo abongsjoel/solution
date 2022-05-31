@@ -4,9 +4,9 @@ This project implements a simple dynamic main menu component according to instru
 
 ![screenshot](../main/screenshot.png)
 
-## Live Demo
+<!-- ## Live Demo
 
-- [Visit Page](https://abongsjoel.github.io/solution/)
+- [Visit Page](https://abongsjoel.github.io/solution/) -->
 
 ## Built With
 
