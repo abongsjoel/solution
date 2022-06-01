@@ -1,5 +1,4 @@
 import React, { ReactElement } from "react";
-import { useMap } from "@umijs/hooks";
 
 type MenuItem = {
   title: string;
@@ -9,7 +8,19 @@ type MenuItem = {
 type MenuConfig = Array<MenuItem>;
 
 function Solution({ menuConfig }: { menuConfig: MenuConfig }): ReactElement {
-  const [, { set: setShow, get: getShow }] = useMap<string, boolean>([]);
+  const _showMap = new Map<string, boolean>();
+
+  const [_showMenu, setShowMenu] = React.useState<Map<string, boolean>>();
+
+  const _onExpand = (title: string) => {
+    if (_showMenu && _showMenu.get(title)) {
+      _showMap.set(title, false);
+    } else {
+      _showMap.clear();
+      _showMap.set(title, true);
+    }
+    setShowMenu(_showMap);
+  };
 
   return (
     <div>
@@ -20,11 +31,12 @@ function Solution({ menuConfig }: { menuConfig: MenuConfig }): ReactElement {
             <React.Fragment>
               <button
                 data-test-id={`button-${title.toLowerCase()}`}
-                onClick={() => setShow(title, !getShow(title))}
+                onClick={() => _onExpand(title)}
               >
-                Expand
+                {_showMenu && _showMenu.get(title) ? "Hide" : "Expand"}
               </button>
-              {getShow(title) && (
+
+              {_showMenu && _showMenu.get(title) && (
                 <ul data-test-id={`ul-${title.toLowerCase()}`}>
                   {subItems.map((subItem) => (
                     <li

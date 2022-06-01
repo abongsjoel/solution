@@ -14,6 +14,10 @@ function App() {
       title: "Contact",
       subItems: ["Phone", "Mail"],
     },
+    {
+      title: "Food",
+      subItems: ["Achu", "Fufu", "Eru", "Ndole"],
+    },
   ];
 
   return (
