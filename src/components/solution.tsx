@@ -25,7 +25,11 @@ function Solution({ menuConfig }: { menuConfig: MenuConfig }): ReactElement {
   return (
     <div>
       {menuConfig.map(({ title, subItems }) => (
-        <div id={title} data-test-id={`first-level-${title.toLowerCase()}`}>
+        <div
+          key={title}
+          id={title}
+          data-test-id={`first-level-${title.toLowerCase()}`}
+        >
           {title}
           {subItems && subItems.length > 0 && (
             <React.Fragment>
@@ -41,6 +45,7 @@ function Solution({ menuConfig }: { menuConfig: MenuConfig }): ReactElement {
                   {subItems.map((subItem) => (
                     <li
                       id={subItem}
+                      key={subItem}
                       data-test-id={`li-${title.toLowerCase()}-${subItem.toLowerCase()}`}
                     >
                       {subItem}
